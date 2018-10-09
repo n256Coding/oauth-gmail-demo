@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>It works</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+
+    <!--<table>-->
+        <!--<thead>-->
+        <!--<tr>-->
+            <!--<th>Email</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<tr th:each="mail: ${mails}">-->
+            <!--<td>-->
+                <!--<p th:text="${mail.from}">From: </p>-->
+                <!--<p th:text="${mail.to}">To: </p>-->
+                <!--<p th:text="${mail.subject}">Subject: </p>-->
+                <!--<p th:text="${mail.body}">Body: </p>-->
+            <!--</td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+    <!--</table>-->
+
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Mail Viewer</h1>
+                <p class="lead">We have collected latest 20 emails of your Gmail account, Take a look!.</p>
+            </div>
+        </div>
+        <div class="card" th:each="mail: ${mails}">
+            <h5 class="card-header" th:text="${mail.subject}">Featured</h5>
+            <div class="card-body">
+                <span>From: </span><p class="card-text" th:text="${mail.from}"></p>
+                <p class="card-text" th:text="${mail.date}"></p>
+                <h5 class="card-title" th:text="${mail.body}"></h5>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

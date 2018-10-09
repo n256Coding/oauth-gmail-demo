@@ -1,26 +1,36 @@
 package com.n256coding.oauthgmaildemo.controllers;
 
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.springframework.http.client.ClientHttpRequest;
+import com.n256coding.oauthgmaildemo.helpers.WebRequestHelper;
+import com.n256coding.oauthgmaildemo.models.Message;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.client.RestTemplate;
-import sun.net.www.http.HttpClient;
 
-import java.net.URL;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 @Controller
 public class MainController {
 
-    @GetMapping("/")
-    public String getPosts() {
-        return "index";
+
+    @GetMapping("/callback")
+    public String getCallback(HttpServletRequest request, HttpServletResponse response, Model model) throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException, IOException, URISyntaxException {
+        String requestCode = request.getParameter("code");
+
+        String oAuthToken = WebRequestHelper.requestOAuthToken(requestCode);
+        List<String> mailIds = WebRequestHelper.requestMailIds(oAuthToken, 20);
+        List<Message> mailMessages = WebRequestHelper.getMailMessages(oAuthToken, mailIds);
+
+        model.addAttribute("mails", mailMessages);
+
+        return "works";
     }
 
-    @GetMapping("/Log")
-    public String doLogging(){
-        RestTemplate restTemplate = new RestTemplate();
-//        HttpClient httpClient = HttpClient.New(new URL(""));
-        return "";
-    }
+
 }

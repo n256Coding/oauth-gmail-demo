@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="scripts.js"></script>
 </head>
 <body>
-    <button>View my gmail messages</button>
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Gmail Viewer</h1>
+                <p class="lead">Do you like to view your emails here?, Lets see!.</p>
+            </div>
+            <hr class="my-4">
+            <p class="lead">
+                <button id="showMails" class="btn btn-primary btn-lg" onclick="request()">View my Gmail messages</button>
+            </p>
+        </div>
+    </div>
+
 </body>
 </html>
